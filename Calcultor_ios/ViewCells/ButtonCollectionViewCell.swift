@@ -9,6 +9,16 @@ import UIKit
 
 class ButtonCollectionViewCell: UICollectionViewCell {
     
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                numberLabel.alpha = 0.5
+            }else {
+                numberLabel.alpha = 1
+            }
+        }
+    }
+    
     let numberLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .orange

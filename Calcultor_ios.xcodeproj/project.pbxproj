@@ -15,6 +15,7 @@
 		862E023325B1786E0008F74A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 862E023225B1786E0008F74A /* Assets.xcassets */; };
 		862E023625B1786E0008F74A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862E023425B1786E0008F74A /* LaunchScreen.storyboard */; };
 		86EED44D25B2BC1F000FF4FD /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EED44C25B2BC1F000FF4FD /* KeyboardLayout.swift */; };
+		86EED45425B2EFFC000FF4FD /* CalculationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EED45325B2EFFC000FF4FD /* CalculationBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		862E023525B1786E0008F74A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		862E023725B1786E0008F74A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86EED44C25B2BC1F000FF4FD /* KeyboardLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
+		86EED45325B2EFFC000FF4FD /* CalculationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		862BB35E25B2A54E003F5CA3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				86EED45325B2EFFC000FF4FD /* CalculationBrain.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86EED45425B2EFFC000FF4FD /* CalculationBrain.swift in Sources */,
 				862BB36925B2B561003F5CA3 /* ButtonCollectionViewCell.swift in Sources */,
 				862E022A25B1786D0008F74A /* AppDelegate.swift in Sources */,
 				86EED44D25B2BC1F000FF4FD /* KeyboardLayout.swift in Sources */,

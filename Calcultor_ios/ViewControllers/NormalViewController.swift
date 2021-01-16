@@ -8,9 +8,27 @@
 import UIKit
 
 class NormalViewController: UIViewController {
-    
+    @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var ButtonCollectionView: UICollectionView!
+    
+    var brain: CalculationBrain = CalculationBrain()
     let numbers = KeyboardLayout.shared.normalNumbers
+    var isMiddleTyping = false
+    
+    private var displayValue: Double {
+        get {
+            return Double(displayLabel.text!)!
+        }
+        
+        set {
+            let suffixString = String(newValue)
+            if suffixString.hasSuffix(".0") {
+                displayLabel.text = suffixString.replacingOccurrences(of: ".0", with: "")
+            }else {
+                displayLabel.text = suffixString
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +60,11 @@ extension NormalViewController: UICollectionViewDataSource {
             // if "0" < numberString && "9" > numberString { } 범위 연산자
             if "0"..."9" ~= numberString || numberString.description == "." {
                 cell.numberLabel.backgroundColor = .darkGray
-            }else if numberString == "C" || numberString == "%" || numberString == "$" {
+            }else if numberString == "√" || numberString == "%" || numberString == "∏" {
                 cell.numberLabel.backgroundColor = UIColor(white: 1, alpha: 0.7)
                 cell.numberLabel.textColor = .black
+            }else if numberString == "=" {
+                cell.numberLabel.backgroundColor = .systemPink
             }
         }
         
@@ -80,8 +100,47 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+
 extension NormalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let number = numbers[indexPath.section][indexPath.row]
+        
+        switch number {
+        case "0"..."9":
+            if isMiddleTyping {
+                var textCurrentlyInDisplayLabel = displayLabel.text
+                if textCurrentlyInDisplayLabel!.hasPrefix("0") {
+                    textCurrentlyInDisplayLabel = ""
+                }
+                displayLabel.text = textCurrentlyInDisplayLabel! + number
+            }else {
+                displayLabel.text = number
+            }
+
+            isMiddleTyping = true
+        case ".":
+            if !confirmIncludeDecimalPoint(numberString: displayLabel.text!) {
+                let textCurrentlyInDisplayLabel = displayLabel.text
+                displayLabel.text = textCurrentlyInDisplayLabel! + number
+            }
+    
+        default:
+            if isMiddleTyping {
+                brain.setOperand(operand: displayValue)
+                isMiddleTyping = false
+            }
+            brain.performOperation(symbol: number)
+            displayValue = brain.result
+        }
+    }
+    
+    private func confirmIncludeDecimalPoint(numberString: String) -> Bool {
+        if numberString.range(of: ".") != nil || numberString.count == 0 {
+            print("numberString : \(numberString)")
+            return true
+        }
+        return false
     }
 }
+
+

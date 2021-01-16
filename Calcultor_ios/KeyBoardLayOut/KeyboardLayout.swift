@@ -14,7 +14,7 @@ class KeyboardLayout {
     static var shared = KeyboardLayout()
 
     let normalNumbers = [
-        ["C","%","$","÷"],
+        ["√","%","∏","÷"],
         ["7","8","9","×"],
         ["4","5","6","-"],
         ["1","2","3","+"],

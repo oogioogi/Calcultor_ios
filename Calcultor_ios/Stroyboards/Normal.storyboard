@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,18 +39,31 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTc-t4-jap">
+                                <rect key="frame" x="0.0" y="295" width="404" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="GwD-Y4-Z3H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b0S-ud-9mM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mbK-jc-ESh" firstAttribute="centerX" secondItem="dEn-WM-D21" secondAttribute="centerX" id="3TH-uI-hI5"/>
                             <constraint firstItem="mbK-jc-ESh" firstAttribute="leading" secondItem="b0S-ud-9mM" secondAttribute="leading" id="AIw-vU-0TX"/>
+                            <constraint firstItem="jTc-t4-jap" firstAttribute="leading" secondItem="mbK-jc-ESh" secondAttribute="leading" id="BF4-hQ-tbq"/>
+                            <constraint firstItem="mbK-jc-ESh" firstAttribute="top" secondItem="jTc-t4-jap" secondAttribute="bottom" constant="10" id="JGO-VB-oJw"/>
                             <constraint firstItem="b0S-ud-9mM" firstAttribute="bottom" secondItem="mbK-jc-ESh" secondAttribute="bottom" id="WTG-FF-qv0"/>
                             <constraint firstItem="b0S-ud-9mM" firstAttribute="trailing" secondItem="mbK-jc-ESh" secondAttribute="trailing" id="eQo-TM-bN1"/>
+                            <constraint firstItem="jTc-t4-jap" firstAttribute="trailing" secondItem="mbK-jc-ESh" secondAttribute="trailing" constant="-10" id="rxE-Ay-mNP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ButtonCollectionView" destination="mbK-jc-ESh" id="f5h-Ep-yvP"/>
+                        <outlet property="displayLabel" destination="jTc-t4-jap" id="QJd-VW-jLf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oM4-VK-sW8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -59,9 +71,4 @@
             <point key="canvasLocation" x="-152" y="138"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
