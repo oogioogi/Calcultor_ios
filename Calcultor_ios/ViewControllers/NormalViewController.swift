@@ -90,9 +90,9 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
         width = (ButtonCollectionView.frame.width / rowCount) - 20
         height = (ButtonCollectionView.frame.height / sectionCount) - 20
         
-        if indexPath.section == 4 && indexPath.row == 0 {
-            width = width * 2 + 20
-        }
+//        if indexPath.section == 4 && indexPath.row == 0 {
+//            width = width * 2 + 20
+//        }
         return .init(width: width, height: height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -123,7 +123,8 @@ extension NormalViewController: UICollectionViewDelegate {
                 let textCurrentlyInDisplayLabel = displayLabel.text
                 displayLabel.text = textCurrentlyInDisplayLabel! + number
             }
-    
+        case "C":
+            displayValue = 0
         default:
             if isMiddleTyping {
                 brain.setOperand(operand: displayValue)
