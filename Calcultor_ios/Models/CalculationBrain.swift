@@ -30,11 +30,16 @@ class CalculationBrain {
         "∏": Operation.Constant(.pi),
         "√": Operation.Unaryoperator(sqrt),
         "×": Operation.Binaryoperator(multiply),
+        //"×": Operation.Binaryoperator({ $0 * $1 }),
         "÷": Operation.Binaryoperator(divide),
+        //"÷": Operation.Binaryoperator({ $0 / $1 }),
         "+": Operation.Binaryoperator(add),
+        //"+": Operation.Binaryoperator({ $0 + $1 }),
         "-": Operation.Binaryoperator(sub),
+        //"-": Operation.Binaryoperator({ $0 - $1 }),
         "%": Operation.Constant(0.01),
-        "=": Operation.Equals
+        "=": Operation.Equals,
+        "C": Operation.ClearAll
     ]
     
     enum Operation {
@@ -42,6 +47,7 @@ class CalculationBrain {
         case Unaryoperator((Double) -> Double)
         case Binaryoperator((Double, Double) -> Double)
         case Equals
+        case ClearAll
     }
     
     func setOperand(operand: Double) {
@@ -63,9 +69,13 @@ class CalculationBrain {
             
             case .Equals:
                 if pending != nil {
+                    //print("first : \(pending!.firstoperand) secode : \(accumulator)")
                     accumulator = pending!.binaryFunction(pending!.firstoperand, accumulator)
                     pending = nil
                 }
+            case .ClearAll:
+                accumulator = 0.0
+                pending = nil
             }
         }
     }

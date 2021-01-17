@@ -109,22 +109,24 @@ extension NormalViewController: UICollectionViewDelegate {
         case "0"..."9":
             if isMiddleTyping {
                 var textCurrentlyInDisplayLabel = displayLabel.text
-                if textCurrentlyInDisplayLabel!.hasPrefix("0") {
+                if textCurrentlyInDisplayLabel!.hasPrefix("0"), !textCurrentlyInDisplayLabel!.hasPrefix("0.") {
                     textCurrentlyInDisplayLabel = ""
                 }
                 displayLabel.text = textCurrentlyInDisplayLabel! + number
             }else {
                 displayLabel.text = number
             }
-
             isMiddleTyping = true
+            
         case ".":
             if !confirmIncludeDecimalPoint(numberString: displayLabel.text!) {
                 let textCurrentlyInDisplayLabel = displayLabel.text
                 displayLabel.text = textCurrentlyInDisplayLabel! + number
             }
+            
         case "C":
-            displayValue = 0
+            displayValue = 0.0
+            
         default:
             if isMiddleTyping {
                 brain.setOperand(operand: displayValue)
