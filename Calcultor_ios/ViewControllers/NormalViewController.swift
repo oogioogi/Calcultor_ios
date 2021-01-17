@@ -126,6 +126,7 @@ extension NormalViewController: UICollectionViewDelegate {
             
         case "C":
             displayValue = 0.0
+            brain.setOperand(operand: 0.0)
             
         default:
             if isMiddleTyping {

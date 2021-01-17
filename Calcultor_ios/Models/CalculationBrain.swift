@@ -60,6 +60,7 @@ class CalculationBrain {
             switch constant {
             case .Constant(let value):
                 accumulator = value * accumulator
+                print("accumulator : \(accumulator) value : \(value)")
                 
             case .Unaryoperator(let root):
                 accumulator = root(accumulator)
@@ -74,7 +75,6 @@ class CalculationBrain {
                     pending = nil
                 }
             case .ClearAll:
-                accumulator = 0.0
                 pending = nil
             }
         }
