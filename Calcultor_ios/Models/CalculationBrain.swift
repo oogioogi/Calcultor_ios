@@ -2,7 +2,7 @@
 //  CalculationBrain.swift
 //  Calcultor_ios
 //
-//  Created by 이용석 on 2021/01/16.
+//  Created by 이용석: 조선소 전기 쟁이 on 2021/01/16.
 //
 
 import Foundation
@@ -39,7 +39,7 @@ class CalculationBrain {
         //"-": Operation.Binaryoperator({ $0 - $1 }),
         "%": Operation.Constant(0.01),
         "=": Operation.Equals,
-        "C": Operation.ClearAll
+        "AC": Operation.ClearAll
     ]
     
     enum Operation {
@@ -52,7 +52,6 @@ class CalculationBrain {
     
     func setOperand(operand: Double) {
         accumulator = operand
-
     }
     
     func performOperation(symbol: String) {
@@ -70,7 +69,7 @@ class CalculationBrain {
             
             case .Equals:
                 if pending != nil {
-                    //print("first : \(pending!.firstoperand) secode : \(accumulator)")
+                    print("first : \(pending!.firstoperand) secode : \(accumulator)")
                     accumulator = pending!.binaryFunction(pending!.firstoperand, accumulator)
                     pending = nil
                 }

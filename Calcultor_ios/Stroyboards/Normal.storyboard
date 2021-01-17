@@ -48,27 +48,41 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-F8-aTv">
+                                <rect key="frame" x="10" y="54" width="394" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6nO-ni-ooq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b0S-ud-9mM"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mbK-jc-ESh" firstAttribute="centerX" secondItem="dEn-WM-D21" secondAttribute="centerX" id="3TH-uI-hI5"/>
                             <constraint firstItem="mbK-jc-ESh" firstAttribute="leading" secondItem="b0S-ud-9mM" secondAttribute="leading" id="AIw-vU-0TX"/>
+                            <constraint firstItem="9f5-F8-aTv" firstAttribute="leading" secondItem="b0S-ud-9mM" secondAttribute="leading" constant="10" id="AoZ-Ee-FbN"/>
                             <constraint firstItem="jTc-t4-jap" firstAttribute="leading" secondItem="mbK-jc-ESh" secondAttribute="leading" id="BF4-hQ-tbq"/>
                             <constraint firstItem="mbK-jc-ESh" firstAttribute="top" secondItem="jTc-t4-jap" secondAttribute="bottom" constant="10" id="JGO-VB-oJw"/>
+                            <constraint firstItem="b0S-ud-9mM" firstAttribute="trailing" secondItem="9f5-F8-aTv" secondAttribute="trailing" constant="10" id="RGd-Wu-s5k"/>
                             <constraint firstItem="b0S-ud-9mM" firstAttribute="bottom" secondItem="mbK-jc-ESh" secondAttribute="bottom" id="WTG-FF-qv0"/>
                             <constraint firstItem="b0S-ud-9mM" firstAttribute="trailing" secondItem="mbK-jc-ESh" secondAttribute="trailing" id="eQo-TM-bN1"/>
                             <constraint firstItem="jTc-t4-jap" firstAttribute="trailing" secondItem="mbK-jc-ESh" secondAttribute="trailing" constant="-10" id="rxE-Ay-mNP"/>
+                            <constraint firstItem="9f5-F8-aTv" firstAttribute="top" secondItem="b0S-ud-9mM" secondAttribute="top" constant="10" id="vU4-UM-NCv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ButtonCollectionView" destination="mbK-jc-ESh" id="f5h-Ep-yvP"/>
+                        <outlet property="codeLabel" destination="9f5-F8-aTv" id="xVf-Kw-I0L"/>
                         <outlet property="displayLabel" destination="jTc-t4-jap" id="QJd-VW-jLf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oM4-VK-sW8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-152" y="138"/>
+            <point key="canvasLocation" x="-590" y="80"/>
         </scene>
     </scenes>
 </document>

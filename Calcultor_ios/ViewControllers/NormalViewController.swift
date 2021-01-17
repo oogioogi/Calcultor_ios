@@ -8,12 +8,23 @@
 import UIKit
 
 class NormalViewController: UIViewController {
+    @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var ButtonCollectionView: UICollectionView!
     
     var brain: CalculationBrain = CalculationBrain()
     let numbers = KeyboardLayout.shared.normalNumbers
     var isMiddleTyping = false
+    var recoding: [String] = []
+    
+    private var stringRecord: String {
+        get {
+            return codeLabel.text!
+        }
+        set {
+            codeLabel.text! += newValue
+        }
+    }
     
     private var displayValue: Double {
         get {
@@ -37,7 +48,7 @@ class NormalViewController: UIViewController {
         self.ButtonCollectionView.dataSource = self
         
         self.ButtonCollectionView.contentInset = .init(top: 10, left: 10, bottom: 0, right: 10)
-        // ViewCell에서 무형의 존재에서는 레지스트 해주어야함!
+        
         ButtonCollectionView.register(ButtonCollectionViewCell.self, forCellWithReuseIdentifier: "ButtonCollectionViewCell")
     }
     
@@ -100,7 +111,6 @@ extension NormalViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
 extension NormalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let number = numbers[indexPath.section][indexPath.row]
@@ -124,18 +134,38 @@ extension NormalViewController: UICollectionViewDelegate {
                 displayLabel.text = textCurrentlyInDisplayLabel! + number
             }
             
-        case "C":
+        case "AC":
             displayValue = 0.0
             brain.setOperand(operand: 0.0)
+            codeLabel.text = ""
             
-        default:
+        case "=":
+            stringRecord = displayLabel.text!
+            
             if isMiddleTyping {
                 brain.setOperand(operand: displayValue)
                 isMiddleTyping = false
             }
             brain.performOperation(symbol: number)
             displayValue = brain.result
+            stringRecord = " " + number + " "
+            stringRecord = String(displayValue)
+            
+            recoding.append(stringRecord)
+            
+            print(recoding)
+
+        default:
+            stringRecord = displayLabel.text!
+            
+            if isMiddleTyping {
+                brain.setOperand(operand: displayValue)
+                isMiddleTyping = false
+            }
+            brain.performOperation(symbol: number)
+            stringRecord = " " + number + " "
         }
+        
     }
     
     private func confirmIncludeDecimalPoint(numberString: String) -> Bool {
