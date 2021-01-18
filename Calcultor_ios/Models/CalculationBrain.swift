@@ -69,7 +69,7 @@ class CalculationBrain {
             
             case .Equals:
                 if pending != nil {
-                    print("first : \(pending!.firstoperand) secode : \(accumulator)")
+                    //print("first : \(pending!.firstoperand) secode : \(accumulator)")
                     accumulator = pending!.binaryFunction(pending!.firstoperand, accumulator)
                     pending = nil
                 }

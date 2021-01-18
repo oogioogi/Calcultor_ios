@@ -123,11 +123,11 @@ extension NormalViewController: UICollectionViewDelegate {
                     textCurrentlyInDisplayLabel = ""
                 }
                 displayLabel.text = textCurrentlyInDisplayLabel! + number
+                
             }else {
                 displayLabel.text = number
             }
             isMiddleTyping = true
-            
         case ".":
             if !confirmIncludeDecimalPoint(numberString: displayLabel.text!) {
                 let textCurrentlyInDisplayLabel = displayLabel.text
@@ -140,31 +140,39 @@ extension NormalViewController: UICollectionViewDelegate {
             codeLabel.text = ""
             
         case "=":
-            stringRecord = displayLabel.text!
             
             if isMiddleTyping {
                 brain.setOperand(operand: displayValue)
                 isMiddleTyping = false
             }
+            
             brain.performOperation(symbol: number)
             displayValue = brain.result
-            stringRecord = " " + number + " "
-            stringRecord = String(displayValue)
-            
-            recoding.append(stringRecord)
-            
-            print(recoding)
 
         default:
-            stringRecord = displayLabel.text!
             
             if isMiddleTyping {
                 brain.setOperand(operand: displayValue)
                 isMiddleTyping = false
             }
             brain.performOperation(symbol: number)
-            stringRecord = " " + number + " "
         }
+        recodingCalculator(input: number)
+    }
+    
+   
+    private func recodingCalculator(input: String) {
+        if input == "=" {
+            recoding.append(input)
+            recoding.append(displayLabel.text!)
+            codeLabel.text = recoding.joined()
+            //recoding.removeAll()
+        }else if input == "AC" {
+            recoding.removeAll()
+        }else {
+            recoding.append(input)
+        }
+        print(recoding)
         
     }
     
