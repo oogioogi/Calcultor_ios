@@ -22,7 +22,7 @@ class NormalViewController: UIViewController {
             return codeLabel.text!
         }
         set {
-            codeLabel.text! += newValue
+            codeLabel.text! = newValue
         }
     }
     
@@ -118,11 +118,12 @@ extension NormalViewController: UICollectionViewDelegate {
         switch number {
         case "0"..."9":
             if isMiddleTyping {
-                var textCurrentlyInDisplayLabel = displayLabel.text
-                if textCurrentlyInDisplayLabel!.hasPrefix("0"), !textCurrentlyInDisplayLabel!.hasPrefix("0.") {
-                    textCurrentlyInDisplayLabel = ""
+                var currentryBeforeZeroDot = displayLabel.text
+                if currentryBeforeZeroDot!.hasPrefix("0"), !currentryBeforeZeroDot!.hasPrefix("0.") {
+                    currentryBeforeZeroDot = ""
                 }
-                displayLabel.text = textCurrentlyInDisplayLabel! + number
+                //let currentryBeforeZeroDot = removeBeforeZero(zeroString: displayLabel.text!)
+                displayLabel.text = currentryBeforeZeroDot! + number
                 
             }else {
                 displayLabel.text = number
@@ -160,20 +161,24 @@ extension NormalViewController: UICollectionViewDelegate {
         recodingCalculator(input: number)
     }
     
+    private func removeBeforeZero(zeroString: String) -> String {
+        if zeroString.hasPrefix("0"), !zeroString.hasPrefix("0.") {
+            return ""
+        }
+        return zeroString
+    }
    
     private func recodingCalculator(input: String) {
         if input == "=" {
             recoding.append(input)
             recoding.append(displayLabel.text!)
-            codeLabel.text = recoding.joined()
-            //recoding.removeAll()
         }else if input == "AC" {
             recoding.removeAll()
         }else {
             recoding.append(input)
         }
         print(recoding)
-        
+        stringRecord = recoding.joined()
     }
     
     private func confirmIncludeDecimalPoint(numberString: String) -> Bool {
