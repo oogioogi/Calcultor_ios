@@ -22,9 +22,11 @@ func add(first: Double, second: Double) -> Double {
 func sub(first: Double, second: Double) -> Double {
     return first - second
 }
+
 class CalculationBrain {
     
     private var accumulator = 0.0
+    private var internalProgram = [AnyObject]()
     
     var operations: Dictionary<String,Operation> = [
         "∏": Operation.Constant(.pi),
@@ -52,9 +54,11 @@ class CalculationBrain {
     
     func setOperand(operand: Double) {
         accumulator = operand
+        internalProgram.append(operand as AnyObject)
     }
     
     func performOperation(symbol: String) {
+        internalProgram.append(symbol as AnyObject)
         if let constant = operations[symbol] {
             switch constant {
             case .Constant(let value):
@@ -86,6 +90,31 @@ class CalculationBrain {
         var firstoperand: Double
     }
     
+    typealias  PropertyList = AnyObject
+    var program: PropertyList {
+        get {
+            return internalProgram as AnyObject
+        }
+        
+//        set {
+//            clear()
+//            if let arrayOfOps = newValue as? [AnyObject] {
+//                for ops in arrayOfOps {
+//                    if let operand = ops as? Double {
+//                        setOperand(operand: operand)
+//                    }else if let operation = ops as? String {
+//                        performOperation(symbol: operation)
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    func clear() {
+        accumulator = 0.0
+        pending = nil
+        internalProgram.removeAll()
+    }
     var result: Double {
         get {
             return accumulator

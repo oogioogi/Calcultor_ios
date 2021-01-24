@@ -27,7 +27,7 @@ class KeyboardLayout {
         ["AC","0",".","="],
     ]
     
-    let electronicNumbers = [
+    let electricalNumbers = [
         ["√","%","∏","÷"],
         ["7","8","9","×"],
         ["4","5","6","-"],

@@ -15,7 +15,8 @@ class NormalViewController: UIViewController {
     var brain: CalculationBrain = CalculationBrain()
     let numbers = KeyboardLayout.shared.normalNumbers
     var isMiddleTyping = false
-    var recoding: [String] = []
+    var savedProgram: CalculationBrain.PropertyList?
+    //var recoding: [String] = []
     
     private var stringRecord: String {
         get {
@@ -148,7 +149,24 @@ extension NormalViewController: UICollectionViewDelegate {
             }
             
             brain.performOperation(symbol: number)
+            
             displayValue = brain.result
+            savedProgram = brain.program
+            
+            var listString = ""
+            if savedProgram != nil {
+                for ops in savedProgram as! [AnyObject] {
+                    if let string = ops as? String {
+                        listString += string
+                    }else {
+                        listString += "\(ops)"
+                    }
+                }
+                stringRecord = listString + "\(brain.result)"
+                savedProgram = nil
+                brain.clear()
+            }
+            
 
         default:
             
@@ -158,7 +176,7 @@ extension NormalViewController: UICollectionViewDelegate {
             }
             brain.performOperation(symbol: number)
         }
-        recodingCalculator(input: number)
+        //recodingCalculator(input: number)
     }
     
     private func removeBeforeZero(zeroString: String) -> String {
@@ -168,18 +186,19 @@ extension NormalViewController: UICollectionViewDelegate {
         return zeroString
     }
    
-    private func recodingCalculator(input: String) {
-        if input == "=" {
-            recoding.append(input)
-            recoding.append(displayLabel.text!)
-        }else if input == "AC" {
-            recoding.removeAll()
-        }else {
-            recoding.append(input)
-        }
-        print(recoding)
-        stringRecord = recoding.joined()
-    }
+//    private func recodingCalculator(input: String) {
+//        if input == "=" {
+//            recoding.append(input)
+//            let prefix = removeBeforeZero(zeroString: displayLabel.text!)
+//            recoding.append(prefix)
+//        }else if input == "AC" {
+//            recoding.removeAll()
+//        }else {
+//            recoding.append(input)
+//        }
+//        print(recoding)
+//        stringRecord = recoding.joined()
+//    }
     
     private func confirmIncludeDecimalPoint(numberString: String) -> Bool {
         if numberString.range(of: ".") != nil || numberString.count == 0 {
